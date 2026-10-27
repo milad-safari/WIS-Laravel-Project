@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CourseController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -27,3 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])
         ->name('logout');
 });
+
+Route::post('/courses', [CourseController::class, 'store'])
+    ->middleware('auth')
+    ->name('courses.store');
